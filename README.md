@@ -1,252 +1,390 @@
-;; -*- mode: emacs-lisp -*-
-;; This file is loaded by Spacemacs at startup.
-;; It must be stored in your home directory.
+<a name="top"></a>
+<a href="http://github.com/syl20bnr/spacemacs"><img src="https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg" alt="Made with Spacemacs"></a><a href="http://www.twitter.com/spacemacs"><img src="http://i.imgur.com/tXSoThF.png" alt="Twitter" align="right"></a><br>
+***
+<p align="center"><img src="/doc/img/title2.png" alt="Spacemacs"/></p>
+<p align="center">
+<b><a href="http://spacemacs.org/doc/DOCUMENTATION#orgheadline5">philosophy</a></b>
+|
+<b><a href="http://spacemacs.org/doc/DOCUMENTATION#orgheadline8">for whom?</a></b>
+|
+<b><a href="http://spacemacs.org/doc/DOCUMENTATION#orgheadline7">screenshots</a></b>
+|
+<b><a href="http://spacemacs.org/doc/DOCUMENTATION">documentation</a></b>
+|
+<b><a href="CONTRIBUTING.org">contribute</a></b>
+|
+<b><a href="http://spacemacs.org/doc/DOCUMENTATION#orgheadline187">achievements</a></b>
+|
+<b><a href="http://spacemacs.org/doc/FAQ">FAQ</a></b>
+</p>
+***
+<p align="center">
+<a href="https://gitter.im/syl20bnr/spacemacs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join Chat.svg" alt="Gitter"></a>
+<a href="https://travis-ci.org/syl20bnr/spacemacs"><img src="https://travis-ci.org/syl20bnr/spacemacs.svg" alt="Build Status"></a>
+<a href="https://waffle.io/syl20bnr/spacemacs"><img src="https://badge.waffle.io/syl20bnr/spacemacs.png?label=Merging...&title=Merging" alt="PR being merged"></a>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ESFVNPKP4Y742"><img src="https://img.shields.io/badge/Paypal-Donate-blue.svg" alt="Donate"></a>
+<a href="http://www.slant.co/topics/12/~what-are-the-best-programming-text-editors"><img src="https://img.shields.io/badge/Slant-Recommend-ff69b4.svg" alt="Recommend it"></a>
+</p>
+***
 
-(defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
-  (setq-default
-   ;; Base distribution to use. This is a layer contained in the directory
-   ;; `+distribution'. For now available distributions are `spacemacs-base'
-   ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs
-   ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
-   ;; List of configuration layers to load. If it is the symbol `all' instead
-   ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers
-   '(
-     ;; ----------------------------------------------------------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
-     global
-     auto-completion
-     better-defaults
-     emacs-lisp
-     git
-     markdown
-     ruby-on-rails
-     c-c++
-     ycmd
-     tabbar
-     ;;semantic
-     private-c-c++
-     ;;javescript
-     ruby
-     python
-     html
-     ;; org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
-     spell-checking
-     syntax-checking
-     ;; version-control
-     )
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
-   ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
-   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; are declared in a layer which is not a member of
-    ;; the list `dotspacemacs-configuration-layers'. (default t)
-   dotspacemacs-delete-orphan-packages t))
+**Quick Install:**
 
-(defun dotspacemacs/init ()
-  "Initialization function.
-This function is called at the very startup of Spacemacs initialization
-before layers configuration.
-You should not put any user code in there besides modifying the variable
-values."
-  ;; This setq-default sexp is an exhaustive list of all the supported
-  ;; spacemacs settings.
-  (setq-default
-   ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
-   ;; possible. Set it to nil if you have no way to use HTTPS in your
-   ;; environment, otherwise it is strongly recommended to let it set to t.
-   ;; This variable has no effect if Emacs is launched with the parameter
-   ;; `--insecure' which forces the value of this variable to nil.
-   ;; (default t)
-   dotspacemacs-elpa-https t
-   ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout 5
-   ;; If non nil then spacemacs will check for updates at startup
-   ;; when the current branch is not `develop'. (default t)
-   dotspacemacs-check-for-update t
-   dotspacemacs-editing-style 'emacs
-   ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
-   dotspacemacs-verbose-loading nil
-   dotspacemacs-startup-banner 'official
-   ;; List of items to show in the startup buffer. If nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects'.
-   ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
-   ;; Number of recent files to show in the startup buffer. Ignored if
-   ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
-   dotspacemacs-startup-recent-list-size 5
-   ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
-   ;;テーマ
-   dotspacemacs-themes '(cyberpunk)
-   ;; If non nil the cursor color matches the state color in GUI Emacs.
-   dotspacemacs-colorize-cursor-according-to-state t
-   ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
-   ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
-                               :weight normal
-                               :width normal
-                               :powerline-scale 1.1)
-   ;; The leader key
-   dotspacemacs-leader-key "SPC"
-   ;; The leader key accessible in `emacs state' and `insert state'
-   ;; (default "M-m")
-   dotspacemacs-emacs-leader-key "M-m"
-   ;; Major mode leader key is a shortcut key which is the equivalent of
-   ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
-   dotspacemacs-major-mode-leader-key ","
-   ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
-   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
-   ;; These variables control whether separate commands are bound in the GUI to
-   ;; the key pairs C-i, TAB and C-m, RET.
-   ;; Setting it to a non-nil value, allows for separate commands under <C-i>
-   ;; and TAB or <C-m> and RET.
-   ;; In the terminal, these pairs are generally indistinguishable, so this only
-   ;; works in the GUI. (default nil)
-   dotspacemacs-distinguish-gui-tab nil
-   ;; (Not implemented) dotspacemacs-distinguish-gui-ret nil
-   ;; The command key used for Evil commands (ex-commands) and
-   ;; Emacs commands (M-x).
-   ;; By default the command key is `:' so ex-commands are executed like in Vim
-   ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-command-key ":"
-   ;; If non nil `Y' is remapped to `y$'. (default t)
-   dotspacemacs-remap-Y-to-y$ t
-   ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "Default"
-   ;; If non nil the default layout name is displayed in the mode-line.
-   ;; (default nil)
-   dotspacemacs-display-default-layout nil
-   ;; If non nil then the last auto saved layouts are resume automatically upon
-   ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
-   ;; Location where to auto-save files. Possible values are `original' to
-   ;; auto-save the file in-place, `cache' to auto-save the file to another
-   ;; file stored in the cache directory and `nil' to disable auto-saving.
-   ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'cache
-   ;; Maximum number of rollback slots to keep in the cache. (default 5)
-   dotspacemacs-max-rollback-slots 5
-   ;; If non nil then `ido' replaces `helm' for some commands. For now only
-   ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
-   ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
-   dotspacemacs-use-ido nil
-   ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
-   dotspacemacs-helm-resize nil
-   ;; if non nil, the helm header is hidden when there is only one source.
-   ;; (default nil)
-   dotspacemacs-helm-no-header nil
-   ;; define the position to display `helm', options are `bottom', `top',
-   ;; `left', or `right'. (default 'bottom)
-   dotspacemacs-helm-position 'bottom
-   ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
-   ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
-   ;; Which-key delay in seconds. The which-key buffer is the popup listing
-   ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
-   ;; Which-key frame position. Possible values are `right', `bottom' and
-   ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
-   ;; right; if there is insufficient space it displays it at the bottom.
-   ;; (default 'bottom)
-   dotspacemacs-which-key-position 'bottom
-   ;; If non nil a progress bar is displayed when spacemacs is loading. This
-   ;; may increase the boot time on some systems and emacs builds, set it to
-   ;; nil to boost the loading time. (default t)
-   dotspacemacs-loading-progress-bar t
-   ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
-   ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup nil
-   ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
-   ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native nil
-   ;; If non nil the frame is maximized when Emacs starts up.
-   ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
-   ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
-   ;; A value from the range (0..100), in increasing opacity, which describes
-   ;; the transparency level of a frame when it's active or selected.
-   ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
-   ;; A value from the range (0..100), in increasing opacity, which describes
-   ;; the transparency level of a frame when it's inactive or deselected.
-   ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
-   ;; If non nil unicode symbols are displayed in the mode line. (default t)
-   dotspacemacs-mode-line-unicode-symbols t
-   ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters the
-   ;; point when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
-   ;; (default nil)
-   dotspacemacs-line-numbers "relative"
-   ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
-   ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
-   ;; Select a scope to highlight delimiters. Possible values are `any',
-   ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
-   ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
-   ;; If non nil advises quit functions to keep server open when quitting.
-   ;; (default nil)
-   dotspacemacs-persistent-server nil
-   ;; List of search tool executable names. Spacemacs uses the first installed
-   ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
-   ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
-   ;; The default package repository used if no explicit repository has been
-   ;; specified with an installed package.
-   ;; Not used for now. (default nil)
-   dotspacemacs-default-package-repository nil
-   ;; Delete whitespace while saving buffer. Possible values are `all'
-   ;; to aggressively delete empty line and long sequences of whitespace,
-   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
-   ;; delete only whitespace for changed lines or `nil' to disable cleanup.
-   ;; (default nil)
-   dotspacemacs-whitespace-cleanup "trailing"
-   ))
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
-(defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
 
-  )
+- [Introduction](#introduction)
+- [Features](#features)
+- [Documentation](#documentation)
+- [Getting Help](#getting-help)
+- [Prerequisites](#prerequisites)
+    - [Emacs](#emacs)
+        - [Linux distros](#linux-distros)
+        - [OS X](#os-x)
+        - [Windows](#windows)
+- [Install](#install)
+    - [Default installation](#default-installation)
+    - [Installation alongside another configuration](#installation-alongside-another-configuration)
+    - [Spacemacs logo](#spacemacs-logo)
+- [Update](#update)
+    - [Automatic update](#automatic-update)
+    - [On develop branch](#on-develop-branch)
+    - [Revert to a specific version](#revert-to-a-specific-version)
+- [Quotes](#quotes)
+- [Contributions](#contributions)
+- [License](#license)
+- [Supporting Spacemacs](#supporting-spacemacs)
 
-(defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place you code here."
+<!-- markdown-toc end -->
 
+# Introduction
 
-  )
+Spacemacs is a new way to experience Emacs -- a sophisticated and
+polished set-up focused on ergonomics, mnemonics and consistency.
 
+Just clone it, launch it, then press the space bar to explore the
+interactive list of carefully-chosen key bindings. You can also press
+the home buffer's `[?]` button for some great first key bindings to
+try.
 
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+Spacemacs can be used naturally by both Emacs and Vim users -- you can
+even mix the two editing styles. Switching easily between input styles
+makes Spacemacs a great tool for pair-programming.
+
+Spacemacs is currently in beta, and contributions are very welcome.
+
+![spacemacs_python](doc/img/spacemacs-python.png)
+
+# Features
+
+- **Great documentation:** access documentation in Emacs with
+<kbd>SPC h SPC</kbd>.
+- **Beautiful GUI:** you'll love the distraction free UI and its functional
+mode-line.
+- **Excellent ergonomics:** all the key bindings are accessible by pressing
+the <kbd>space bar</kbd> or <kbd>alt-m</kbd>.
+- **Mnemonic key bindings:** commands have mnemonic prefixes like
+<kbd>SPC b</kbd> for all the buffer commands or <kbd>SPC p</kbd> for the
+project commands.
+- **Batteries included:** discover hundreds of ready-to-use packages nicely
+organised in configuration layers following a set of
+[conventions][CONVENTIONS.org].
+
+# Documentation
+
+Comprehensive documentation is available for each layer by pressing
+<kbd>SPC h SPC</kbd>.
+
+To go to the general documentation [click here][DOCUMENTATION.org].
+
+You can also check the [Quick Start guide][QUICK_START.org] and the
+[FAQ][FAQ.org].
+
+# Getting Help
+
+If you need help, ask your question in the [Gitter Chat][] and a member of the
+community will help you out.
+
+If you prefer IRC, connect to the [Gitter Chat IRC server][] and join the
+`#syl20bnr/spacemacs` channel.
+
+# Prerequisites
+
+## Emacs
+
+Spacemacs is operational with Emacs 24.3, but Emacs 24.4 and above are highly
+recommended to enjoy a full experience. The next Emacs major release, Emacs 25,
+is not *officially* supported but is partially working (i.e. bugs should be
+expected).
+
+Some modes require third-party tools that you'll have to install via your
+favorite package manager.
+
+### Linux distros
+
+Install Emacs from the package manager of your Linux distribution.
+
+You should install the "emacs" package, not the "xemacs" package.
+XEmacs is an old fork of Emacs. The X in its name is unrelated to X11.
+Both Emacs and XEmacs have graphical support.
+
+**Note:** Ubuntu LTS 12.04 and 14.04 repositories have only Emacs 24.3
+available. You are advised to [build from source][build_source] Emacs 24.4 or
+greater, as most packages require this version. The same may be true for other
+distributions as well.
+
+### OS X
+
+The recommended way of installing Emacs on OS X is using [homebrew][]:
+
+```sh
+$ brew tap d12frosted/emacs-plus
+$ brew install emacs-plus --with-cocoa --with-gnutls --with-librsvg --with-imagemagick --with-spacemacs-icon
+$ brew linkapps
+```
+
+*Note:* these homebrew commands will install Emacs, and link it to your
+`/Applications` directory. You still need to run the `git clone` mentioned at
+the start of this file. That will populate your `~/.emacs.d` directory, which
+is what transforms a regular Emacs into Spacemacs.
+
+*Note:* the proposed `emacs-plus` tap is indentical to the `emacs` formulae,
+it just defines some additional options like `--with-spacemacs-icon`.
+
+*Note:* after you have completed the [install process below](#install), it is
+also recommended to add the [osx layer][] to your [dotfile][]. Install
+instructions are available in the [osx layer][] documentation.
+
+### Windows
+
+Good quality builds can be found [on this page][emacs-for-windows]. It is
+recommended to install the most stable build.
+
+Be sure to declare a environment variable named `HOME` pointing to your user
+directory `C:\Users\<username>`. Then you can clone Spacemacs in this directory.
+
+Sometimes you'll get the following error when you first start Emacs:
+
+```
+The directory ~/.emacs.d/server is unsafe
+```
+
+To fix it change the owner of the directory `~/.emacs.d/server`:
+  - from Properties select the Tab “Security”,
+  - select the button “Advanced”,
+  - select the Tab “Owner”
+  - change the owner to your account name
+
+Source: [Stackoverflow][so-server-unsafe]
+
+For efficient searches we recommend to install `pt` ([the platinum searcher][]).
+`pt` version 1.7.7 or higher is required.
+
+# Install
+
+## Default installation
+
+1. If you have an existing Emacs configuration, back it up first:
+
+   ```sh
+   cd ~
+   mv .emacs.d .emacs.d.bak
+   mv .emacs .emacs.bak
+   ```
+
+   Don't forget to backup and *remove* `~/.emacs` file otherwise Spacemacs
+   **WILL NOT** load since that file prevents Emacs from loading the proper
+   initialization file.
+
+2. Clone the repository:
+
+   ```sh
+   git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+   ```
+
+   `master` is the stable branch and it is _immutable_, **DO NOT** make any
+   modification to it or you will break the update mechanism. If you want to
+   fork Spacemacs safely use the `develop` branch where you handle the update
+   manually.
+
+3. Launch Emacs. Spacemacs will automatically install the packages it requires.
+   If you get an error regarding package downloads then you may try to disable
+   the HTTPS protocol by starting Emacs with
+
+   ```sh
+   emacs --insecure
+   ```
+
+   You may wish to clear out your `.emacs.d/elpa` directory before doing this,
+   so that any corrupted packages you may have downloaded will be reinstalled.
+
+4. Restart Emacs to complete the installation.
+
+If the mode-line turns red then be sure to consult the [FAQ][FAQ.org].
+
+## Installation alongside another configuration
+
+To try out Spacemacs (or any other Emacs configuration you desire) without
+having to go through the trouble of backing up you `~/.emacs.d` directory and
+then cloning the new configuration:
+
+```sh
+mkdir ~/spacemacs
+git clone git@github.com:syl20bnr/spacemacs.git ~/spacemacs/.emacs.d
+HOME=~/spacemacs emacs
+```
+
+Note: If you're on Fish shell, you will need to modify the last command to: `env
+HOME=$HOME/spacemacs emacs`
+
+## Spacemacs logo
+
+If you are using Ubuntu and Unity then you can add the Spacemacs logo by
+following the instructions [here][cpaulik-unity-icon].
+
+If you're on a mac follow [these instructions][icon-mac-instructions]. You can
+find an .icns version of the logo by [Nasser Alshammari](http://www.nass3r.com)
+in [his repository][icon-repository].
+
+# Update
+
+Spacemacs has a built-in notification of a new version when you are on the
+`master` branch. If you are on the `develop` branch then you'll have to
+update Spacemacs manually by updating your repository.
+
+## Automatic update (on master branch)
+
+When a new version is available a little arrow appears in the mode-line.
+
+Its color depends on the number of versions available since your last update.
+Green means that your current version is recent, orange and red mean that your
+current version is older.
+
+![powerline_update](doc/img/powerline-update.png)
+
+Click on the arrow to update Spacemacs to the last version.
+
+## Manual update (on master branch)
+
+(Remove the angle brackets when typing the lines below into your shell.)
+
+```sh
+git fetch
+git reset --hard <tag version which you are updating to>
+```
+
+## On develop branch
+
+1. Update Emacs packages by clicking (press `RET`) on the `[Update Packages]` link of
+the starting page.
+
+2. Close Emacs and update the git repository:
+
+   ```sh
+   git pull --rebase
+   ```
+
+3. Restart Emacs to complete the upgrade.
+
+## Revert to a specific version
+
+To revert to a specific version you just have to checkout the corresponding
+branch, for instance to revert to the last `0.103`:
+
+   ```sh
+   git checkout origin/release-0.103
+   ```
+
+**After you update, either manually, or automatically, you are advised to update
+  your packages by clicking the `[Update Packages]` button on the Spacemacs Home
+  Buffer.**
+
+# Quotes
+
+[Quote][quote01] by [ashnur](https://github.com/ashnur):
+
+    «I feel that spacemacs is an aircraft carrier and I am playing table tennis on the deck as a freerider.»
+
+# Contributions
+
+Spacemacs is a community-driven project, it needs _you_ to keep it up to
+date and propose useful and complete configuration!
+
+Before contributing be sure to consult the
+[contribution guidelines][CONTRIBUTING.org] and [conventions][CONVENTIONS.org].
+
+# Communities
+
+- [Gitter Chat]
+- [Stack Exchange]
+- [Reddit]
+
+# License
+
+The license is GPLv3 for all parts specific to Spacemacs, this includes:
+- the initialization and core files
+- all the layer files
+- the documentation
+
+For the packages shipped in this repository you can refer to the files header.
+
+[Spacemacs logo][] by [Nasser Alshammari][] released under a Creative Commons
+license.
+
+# Supporting Spacemacs
+
+The best way to support Spacemacs is to contribute to it either by reporting
+bugs, helping the community on the [Gitter Chat][] or sending pull requests.
+
+If you want to show your support financially you can contribute to [Bountysource][] or buy a drink for the
+maintainer by clicking on the [Paypal badge](#top).
+
+If you used spacemacs in a project and you want to show that fact, you can use
+the spacemacs badge: [![Built with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://github.com/syl20bnr/spacemacs)
+
+- For Markdown:
+
+   ```
+   [![Built with Spacemacs](https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg)](http://github.com/syl20bnr/spacemacs)
+   ```
+
+- For HTML:
+
+   ```
+   <a href="https://github.com/syl20bnr/spacemacs"><img src="https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg" /></a>
+   ```
+
+- For Org-mode:
+
+   ```
+   [[https://github.com/syl20bnr/spacemacs][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]]
+   ```
+
+Thank you!
+
+[Twitter]: http://i.imgur.com/tXSoThF.png
+[CONTRIBUTING.org]: CONTRIBUTING.org
+[CONVENTIONS.org]: http://spacemacs.org/doc/CONVENTIONS
+[DOCUMENTATION.org]: http://spacemacs.org/doc/DOCUMENTATION
+[QUICK_START.org]: http://spacemacs.org/doc/QUICK_START
+[FAQ.org]: http://spacemacs.org/doc/FAQ
+[VIMUSERS.org]: http://spacemacs.org/doc/VIMUSERS
+[dotfile]: http://spacemacs.org/doc/DOCUMENTATION#orgheadline45
+[osx layer]: http://spacemacs.org/layers/osx/README
+[Gitter Chat]: https://gitter.im/syl20bnr/spacemacs
+[Gitter Chat IRC server]: https://irc.gitter.im/
+[homebrew]: http://brew.sh
+[emacs-for-windows]: http://emacsbinw64.sourceforge.net/
+[the platinum searcher]: https://github.com/monochromegane/the_platinum_searcher
+[so-server-unsafe]: http://stackoverflow.com/questions/885793/emacs-error-when-calling-server-start
+[Spacemacs logo]: https://github.com/nashamri/spacemacs-logo
+[Nasser Alshammari]: https://github.com/nashamri
+[cpaulik-unity-icon]: http://splendidabacus.com/posts/2015/03/spacemacs-unity-icon/
+[icon-mac-instructions]: http://www.idownloadblog.com/2014/07/16/how-to-change-app-icon-mac/
+[icon-repository]: https://github.com/nashamri/spacemacs-logo
+[Stack Exchange]: http://emacs.stackexchange.com/questions/tagged/spacemacs
+[Reddit]: https://www.reddit.com/r/spacemacs
+[quote01]: https://gitter.im/syl20bnr/spacemacs?at=568e627a0cdaaa62045a7df6
+[build_source]: https://www.gnu.org/software/emacs/manual/html_node/efaq/Installing-Emacs.html
+[Bountysource]: https://salt.bountysource.com/teams/spacemacs
