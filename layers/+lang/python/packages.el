@@ -14,6 +14,7 @@
     anaconda-mode
     company
     company-anaconda
+    company-jedi
     cython-mode
     eldoc
     evil-matchit
@@ -331,6 +332,13 @@
     (add-hook 'inferior-python-mode-hook (lambda ()
                                            (setq-local company-minimum-prefix-length 0)
                                            (setq-local company-idle-delay 0.5))))
+
+  (defun python/post-init-company-jedi ()
+    (use-package company-jedi
+      :if (configuration-layer/package-usedp 'company)
+      :defer t
+      :init
+      (push 'company-jedi company-backends-python-mode)))
 
   (defun python/init-company-anaconda ()
     (use-package company-anaconda
